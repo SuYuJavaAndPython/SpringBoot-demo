@@ -1,0 +1,52 @@
+#server:
+#  port: 8090
+
+
+#配置信息
+#告知加密工具加的什么盐
+jasypt:
+  encryptor:
+    password: 123456
+
+info:
+  name: ENC(kyA2GQ0gMOrcAQpsjZ8vSA==)
+  password: ENC(trR2lAz3TV/jmfUCu1JLGg==)
+
+#推荐使用结构化的配置
+food:
+  ice: 冰淇淋
+  price: 0.8
+  #数组写法
+  tastes:
+    - 奥利奥
+    - 蓝莓
+    - 草莓
+
+#支持流式语法
+#food: {ice: 冰淇淋, price: 0.9}
+
+#分文档写法（即在一个yml文件中可以形成多个文档）---作为文档开头 ...作为文档结尾
+spring:
+  profiles:
+    active: dev
+
+---
+#开发环境
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+server:
+  port: 8090
+...
+---
+#生产环境
+spring:
+  config:
+    activate:
+      on-profile: produce
+
+server:
+  port: 8091
+...

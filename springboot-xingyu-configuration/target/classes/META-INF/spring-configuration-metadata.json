@@ -1,0 +1,47 @@
+{
+  "groups": [
+    {
+      "name": "food",
+      "type": "com.xingyu.config.FoodConfig",
+      "sourceType": "com.xingyu.config.FoodConfig"
+    },
+    {
+      "name": "vegetables",
+      "type": "com.xingyu.config.VegetablesConfig",
+      "sourceType": "com.xingyu.config.VegetablesConfig"
+    }
+  ],
+  "properties": [
+    {
+      "name": "food.ice",
+      "type": "java.lang.String",
+      "sourceType": "com.xingyu.config.FoodConfig"
+    },
+    {
+      "name": "food.price",
+      "type": "java.lang.String",
+      "sourceType": "com.xingyu.config.FoodConfig"
+    },
+    {
+      "name": "food.tastes",
+      "type": "java.lang.String[]",
+      "sourceType": "com.xingyu.config.FoodConfig"
+    },
+    {
+      "name": "vegetables.eggplant",
+      "type": "java.lang.String",
+      "sourceType": "com.xingyu.config.VegetablesConfig"
+    },
+    {
+      "name": "vegetables.green-pepper",
+      "type": "java.lang.String",
+      "sourceType": "com.xingyu.config.VegetablesConfig"
+    },
+    {
+      "name": "vegetables.potato",
+      "type": "java.lang.String",
+      "sourceType": "com.xingyu.config.VegetablesConfig"
+    }
+  ],
+  "hints": []
+}
