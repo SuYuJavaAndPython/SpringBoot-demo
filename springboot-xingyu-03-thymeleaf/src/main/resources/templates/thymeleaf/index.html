@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!-- thymeleaf的五大表达式 -->
+
+    <!-- 变量表达式 -->
+    <!-- text不会解析标签，传什么就展示什么 -->
+<!--    <p th:text="${name}">name</p>-->
+    <!-- utext会解析标签 -->
+<!--    <p th:utext="${name}">name</p>-->
+
+<!--    <h1 th:text="${restaurant.boss}">boss</h1>-->
+<!--    <h2 th:text="${restaurant.chef}">chef</h2>-->
+
+    <!-- 选择变量表达式 -->
+    <div th:object="${restaurant}">
+        <p th:text="*{boss}">boss</p>
+        <p th:text="${restaurant.chef}">chef</p>
+    </div>
+
+    <!-- 链接URL表达式 -->
+    <a href="/welcome" th:href="@{/welcome}">welcome</a>
+
+    <!-- 消息表达式 -->
+    <p th:text="#{message}">message</p>
+
+    <!-- 片段表达式 -->
+    <div th:insert="footer :: copy"></div>
+    <div th:replace="footer :: copy"></div>
+    <div th:include="footer :: copy"></div>
+
+<!--    <footer th:fragment="copy"> &copy; 2021</footer>-->
+
+<!--    <div><footer> &copy; 2021</footer></div>-->
+<!--    <footer> &copy; 2021</footer>-->
+<!--    <div> &copy; 2021</div>-->
+
+</body>
+</html>
