@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>中餐厅</title>
+    <!--E:\gitSource\SpringBoot-demo\srpingboot-xingyu-05-restful\src\main\resources\static\bootstrap.css-->
+    <link rel="stylesheet" th:href="@{/bootstrap.css}">
+    <!--C:\Users\Administrator\.m2\repository\org\webjars\jquery\3.6.0\jquery-3.6.0.jar
+    !\META-INF\resources\webjars\jquery\3.6.0\jquery.js-->
+    <script type="text/javascript" th:src="@{/webjars/jquery/3.6.0/jquery.js}"></script>
+</head>
+<body class="container">
+<h3>中餐厅嘉宾列表</h3>
+<br>
+<table class="table table-bordered table-dark">
+        <thead>
+            <tr>
+                <th>名称</th>
+                <th>职位</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="guest:${guestList}">
+                <td th:text="${guest.name}">name</td>
+                <td th:text="${guest.role}">role</td>
+                <td>
+                    <a th:href="@{/guest/toUpdate/}+${guest.name}" class="btn btn-info">修改</a>
+                    |
+                    <button th:attr="del_url=@{/guest/}+${guest.name}" class="btn btn-info" name="del_button">删除</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <div class="form-group">
+        <div class="col-sm-2 custom-control-label">
+            <a href="/guest/toAdd" th:href="@{/guest/toAdd}" class="btn btn-info">添加</a>
+        </div>
+    </div>
+
+    <!--删除按钮借助表单通过hidden类型的input实现DELETE方式提交请求-->
+    <form method="post" id="del_form">
+        <input type="hidden" name="_method" value="delete">
+    </form>
+    <script>
+        $(function(){
+            $("button[name='del_button']").click(function(){
+               $('#del_form').prop('action', $(this).attr('del_url')).submit();
+            });
+        });
+    </script>
+
+</body>
+</html>
