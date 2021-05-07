@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>中餐厅</title>
+    <!--E:\gitSource\SpringBoot-demo\srpingboot-xingyu-05-restful\src\main\resources\static\bootstrap.css-->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+</head>
+<body class="container">
+<h3>中餐厅嘉宾列表</h3>
+<br>
+<table class="table table-bordered table-dark">
+        <thead>
+            <tr>
+                <th>名称</th>
+                <th>职位</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="guest:${guestList}">
+                <td th:text="${guest.name}">name</td>
+                <td th:text="${guest.role}">role</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
