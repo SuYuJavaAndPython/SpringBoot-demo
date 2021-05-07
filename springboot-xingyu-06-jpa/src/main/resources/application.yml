@@ -7,23 +7,23 @@ spring:
       filter:
         enabled: true
 
-  #\u914D\u7F6E\u6570\u636E\u6E90
+  #配置数据源
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/test
     username: root
     password: rootc
 
-  #\u914D\u7F6Ejpa\u7684\u76F8\u5173\u53C2\u6570
+  #配置jpa的相关参数
   jpa:
-    #\u81EA\u52A8\u521B\u5EFA/\u66F4\u65B0/\u9A8C\u8BC1\u6570\u636E\u5E93\u8868\u7ED3\u6784
+    #自动创建/更新/验证数据库表结构
     hibernate:
       ddl-auto: update
-    #\u8BBE\u7F6E\u6570\u636E\u5E93\u5F15\u64CE\u4E3AInnoDB
+    #设置数据库引擎为InnoDB
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
-    #\u6253\u5370sql\u8BED\u53E5\uFF0C\u65B9\u4FBF\u8C03\u8BD5
+    #打印sql语句，方便调试
     show-sql: true
-    #\u7981\u7528\u6B64\u8B66\u544A spring.jpa.open-in-view \u9ED8\u8BA4\u542F\u7528
+    #禁用此警告 spring.jpa.open-in-view 默认启用
     #WARN 14688 --- [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration
-    #\u53EF\u4EE5\u5728\u89C6\u56FE\u5448\u73B0\u671F\u95F4\u6267\u884C\u6570\u636E\u5E93\u67E5\u8BE2
+    #可以在视图呈现期间执行数据库查询
     open-in-view: false
