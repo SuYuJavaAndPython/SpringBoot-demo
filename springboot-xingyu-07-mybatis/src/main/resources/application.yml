@@ -9,21 +9,28 @@ spring:
       filter:
         enabled: true
 
-  #配置数据源
+  #配置多数据源要为每个数据源起一个名字，如：db1 db2
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/test
-    username: root
-    password: rootc
+    db1:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://localhost:3306/test
+      username: root
+      password: rootc
+    db2:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://localhost:3306/bk_test
+      username: root
+      password: rootc
 
-#配置mybatis
-mybatis:
-  #配置mybatis配置文件的位置，springboot的特点：坚决不要xml文件，
-  #故mybatis的配置文件中的信息可以写到application.yml文件中替代xml文件
-#  config-location: classpath:mybatis-config.xml
-  #配置哪些包下的类全名可以简写
-  type-aliases-package: com.xingyu.model
-  #配置sql存储的xml文件的位置 classpath*:/mybatis/mappers/*.xml
-  #sql可以写在注解中，可以替代对应的xml文件
-  mapper-locations: classpath:mybatis/mappers/*.xml
+
+##配置mybatis
+#mybatis:
+#  #配置mybatis配置文件的位置，springboot的特点：坚决不要xml文件，
+#  #故mybatis的配置文件中的信息可以写到application.yml文件中替代xml文件
+##  config-location: classpath:mybatis-config.xml
+#  #配置哪些包下的类全名可以简写
+#  type-aliases-package: com.xingyu.model
+#  #配置sql存储的xml文件的位置 classpath*:/mybatis/mappers/*.xml
+#  #sql可以写在注解中，可以替代对应的xml文件
+#  mapper-locations: classpath:mybatis/mappers/*.xml
 

@@ -10,7 +10,7 @@ import tk.mybatis.spring.annotation.MapperScan;
  */
 @SpringBootApplication
 //@MapperScan("com.xingyu.mapper")  //org包下的
-@MapperScan("com.xingyu.tk.mapper") //tk包下的
+//@MapperScan("com.xingyu.tk.mapper") //tk包下的
 public class MybatisApplication {
     public static void main(String[] args) {
         SpringApplication.run(MybatisApplication.class, args);

@@ -1,6 +1,7 @@
 package com.xingyu.service.impl;
 
 import com.xingyu.mapper.GuestMapper;
+import com.xingyu.mapper2.GuestMapper2;
 import com.xingyu.model.Guest;
 import com.xingyu.service.GuestService;
 import com.xingyu.tk.mapper.TkGuestMapper;
@@ -21,12 +22,20 @@ public class GuestServiceImpl implements GuestService {
 //    private GuestMapper guestMapper;
 
     //采用tk.mybatis提供的crud
+//    @Autowired
+//    private TkGuestMapper tkGuestMapper;
+
+    //采用多数据源
     @Autowired
-    private TkGuestMapper tkGuestMapper;
+    private GuestMapper guestMapper;
+
+    @Autowired
+    private GuestMapper2 guestMapper2;
 
     public List<Guest> list() {
 //        return guestMapper.selectAllGuest();
-        return tkGuestMapper.selectAll();
+//        return tkGuestMapper.selectAll();
+        return guestMapper2.selectAllGuest();
     }
 
 }
