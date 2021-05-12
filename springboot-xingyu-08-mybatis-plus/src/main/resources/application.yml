@@ -1,0 +1,22 @@
+server:
+  port: 8090
+
+debug: true
+
+#开启请求方式解析器
+spring:
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+
+  #配置数据源
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test?serverTimezone=UTC&characterEncoding=UTF-8
+    username: root
+    password: rootc
+
+#配置mybatis
+mybatis:
+  type-aliases-package: com.xingyu.model
