@@ -1,0 +1,12 @@
+server:
+  port: 8090
+
+spring:
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+
+context:
+  listener:
+    classes: com.xingyu.listener.CustomListener4
