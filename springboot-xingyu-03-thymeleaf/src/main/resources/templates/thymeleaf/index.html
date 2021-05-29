@@ -7,7 +7,7 @@
 <body>
     <!-- thymeleaf的五大表达式 -->
 
-    <!-- 变量表达式 -->
+    <!-- 1.变量表达式 -->
     <!-- text不会解析标签，传什么就展示什么 -->
 <!--    <p th:text="${name}">name</p>-->
     <!-- utext会解析标签 -->
@@ -16,19 +16,115 @@
 <!--    <h1 th:text="${restaurant.boss}">boss</h1>-->
 <!--    <h2 th:text="${restaurant.chef}">chef</h2>-->
 
-    <!-- 选择变量表达式 -->
+    <!-- 拼接字符串 -->
+    <p th:text="${restaurant.boss} + ' And ' + ${restaurant.chef}"></p>
+    <p th:text="|${restaurant.boss} And ${restaurant.chef}|"></p>
+
+    <!-- 条件判断if unless -->
+    <p>我是第一个</p>
+    <p th:text="${msg}" th:if="${msg == 'yes'}"></p>
+    <p>我是第二个</p>
+    <p th:text="${msg}" th:if="${msg == 'no'}"></p>
+    <p>我是第三个</p>
+    <p th:text="${msg}" th:unless="${msg == 'no'}"></p>
+    <!-- 条件判断switch -->
+    <div th:switch="${num}">
+        <p th:case="1">1</p>
+        <p th:case="2">2</p>
+        <p th:case="*">*</p>
+    </div>
+
+    <!-- for循环 even odd 奇偶看count -->
+<!--    状态变量，默认命名是参数名+Stat(如上，dataStat), 用来保存迭代状态。-->
+<!--    自定义的命名方法   <tr th:each="data,status:${list}">-->
+<!--        属性：-->
+<!--        index 索引，从0开始-->
+<!--        count 计数，从1开始-->
+<!--        size  集合的大小-->
+<!--        current 当前对象-->
+<!--        first/last  布尔类型  是否是第一个/最后一个-->
+<!--        even/odd  布尔类型  是否是偶数/奇数个-->
+    <table>
+        <thead>
+            <tr>
+                <th>名字</th>
+                <th>年龄</th>
+                <th>index从0开始</th>
+                <th>count从1开始</th>
+                <th>size数量</th>
+                <th>current当前</th>
+                <th>even偶数</th>
+                <th>odd奇数</th>
+                <th>first第一个</th>
+                <th>last最后一个</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="datas:${personList}">
+                <td th:text="${datas.name}">name</td>
+                <td th:text="${datas.age}">age</td>
+                <td th:text="${datasStat.index}">index</td>
+                <td th:text="${datasStat.count}">count</td>
+                <td th:text="${datasStat.size}">size</td>
+                <td th:text="${datasStat.current}">current</td>
+                <td th:text="${datasStat.even}">even</td>
+                <td th:text="${datasStat.odd}">odd</td>
+                <td th:text="${datasStat.first}">first</td>
+                <td th:text="${datasStat.last}">last</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- thymeleaf内置对象 -->
+    <!-- 1.datas -->
+    <p th:text="${data}"></p>
+    <p th:text="${#dates.format(data, 'yyyy-MM-dd HH-mm-ss')}"></p>
+    <!-- 系统当前时间形式类似 new Date() Fri May 28 20:13:47 CST 2021 -->
+    <p th:text="${#dates.createNow()}"></p>
+    <!-- 系统当前时间形式类似 new Date() 不过时分秒都为0 Fri May 28 00:00:00 CST 2021 -->
+    <p th:text="${#dates.createToday()}"></p>
+    <!-- 2.strings -->
+    <p th:text="${#strings.isEmpty(str)}"></p>
+    <p th:text="${#strings.length(str)}"></p>
+    <p th:text="${#strings.equals(str,'suyu')}"></p>
+
+    <!-- SpEL -->
+    <p th:text="${1 * 2 + 3 - 4}"></p>
+    <p th:text="${personList[0].name}"></p>
+    <p th:text="${T(java.lang.Math).random()}"></p>
+
+    <!-- 内联表达式 -->
+    <p>加油，[[${info}]]</p>
+    <p>加油，<span th:text="${info}"></span></p>
+    <!-- 禁用内联表达式 -->
+    <p th:inline="none">加油，[[<span th:text="${info}"></span>]]</p>
+    <!-- 同样支持动静分离 但原本的注释方式/**/不能使用 -->
+    <!-- 注意：只能在支持thymeleaf下的html文件中的script代码里生效，外部js代码不能用 -->
+    <script type="text/javascript" th:inline="javascript">
+
+        var info = /*[[${info}]]*/ '测试';
+        alert(info);
+
+    </script>
+    <!-- css代码中也类似支持 -->
+    <style type="text/css" th:inline="css">
+
+    </style>
+
+
+    <!-- 2.选择变量表达式 -->
     <div th:object="${restaurant}">
         <p th:text="*{boss}">boss</p>
         <p th:text="${restaurant.chef}">chef</p>
     </div>
 
-    <!-- 链接URL表达式 -->
+    <!-- 3.链接URL表达式 -->
     <a href="/welcome" th:href="@{/welcome}">welcome</a>
 
-    <!-- 消息表达式 -->
+    <!-- 4.消息表达式 -->
     <p th:text="#{message}">message</p>
 
-    <!-- 片段表达式 -->
+    <!-- 5.片段表达式 -->
     <div th:insert="footer :: copy"></div>
     <div th:replace="footer :: copy"></div>
     <div th:include="footer :: copy"></div>

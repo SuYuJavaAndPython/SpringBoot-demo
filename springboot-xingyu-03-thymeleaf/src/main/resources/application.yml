@@ -1,10 +1,18 @@
 server:
   port: 8090
 
-##配置freemarker返回视图信息
+##配置freemarker返回视图信息  旧版springboot 2.1.8及之前
 #spring:
 #  mvc:
 #    view:
 #      #配置响应视图的位置（前缀后缀）
 #      prefix: /templates/
 #      suffix: .ftlh
+
+##新版springboot配置freemarker
+#spring:
+#  freemarker:
+#    #默认值 classpath:/templates/
+#    template-loader-path: classpath:/templates/
+#    #默认值 .ftlh
+#    suffix: .ftlh
