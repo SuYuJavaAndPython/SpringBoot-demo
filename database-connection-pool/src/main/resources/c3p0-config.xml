@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<c3p0-config>
+    <!-- 默认配置 -->
+<!--    <default-config>-->
+    <named-config name="myC3P0">
+        <property name="driverClass">com.mysql.jdbc.Driver</property>
+        <property name="jdbcUrl">jdbc:mysql://localhost:3306/test?useSSL=false&amp;characterEncoding=UTF-8</property>
+        <property name="user">root</property>
+        <property name="password">rootc</property>
+
+        <!-- 初始化连接池的连接数量 -->
+        <property name="initialPoolSize">10</property>
+        <!-- 最大可创建连接数 -->
+        <property name="maxPoolSize">20</property>
+        <!-- 最小连接数 -->
+        <property name="minPoolSize">5</property>
+        <!-- 当某个线程向连接池申请连接时 若连接池没有空闲连接且未到达maxPoolSize 此时创建连接的数量
+         若创建acquireIncrement后大于maxPoolSize 则创建到等于maxPoolSize为止即可 -->
+        <property name="acquireIncrement">2</property>
+        <!-- 最大空闲时间 若一个连接长时间未被使用 超过maxIdleTime 则会被回收销毁(真正的close) -->
+<!--        <property name="maxIdleTime">0</property>-->
+    </named-config>
+<!--    </default-config>-->
+</c3p0-config>
